@@ -1,11 +1,11 @@
 <Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
-    <Import Project=".\BuildProps\PlatformConfig.props" />
+    <Import Project=".\props\PlatformConfig.props" />
     <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
 
     <ImportGroup Label="Flavor Config Props">
-        <Import Project=".\BuildProps\Flavor.Debug.props" Condition="'$(Configuration)'=='Debug'" />
-        <Import Project=".\BuildProps\Flavor.Release.props" Condition="'$(Configuration)'=='Release'" />
+        <Import Project=".\props\Flavor.Debug.props" Condition="'$(Configuration)'=='Debug'" />
+        <Import Project=".\props\Flavor.Release.props" Condition="'$(Configuration)'=='Release'" />
     </ImportGroup>
 
     <PropertyGroup Label="Project Props">
@@ -46,14 +46,14 @@
     </ItemDefinitionGroup> -->
 
     <ItemGroup Label="Headers">
-        <ClInclude Include="pch.h" />
-        <ClInclude Include="main.h" />
+        <ClInclude Include="src/pch.h" />
+        <ClInclude Include="src/main.h" />
     </ItemGroup>
     <ItemGroup Label="Sources">
-        <ClCompile Include="pch.cpp">
+        <ClCompile Include="src/pch.cpp">
             <PrecompiledHeader>Create</PrecompiledHeader>
         </ClCompile>
-        <ClCompile Include="main.cpp" />
+        <ClCompile Include="src/main.cpp" />
     </ItemGroup>
 
     <ImportGroup Label="Targets">
