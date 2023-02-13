@@ -1,0 +1,26 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <PropertyGroup Label="Default Config">
+        <Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
+        <Platform Condition="'$(Platform)'==''">x64</Platform>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectConfiguration Include="Debug|x64">
+            <Configuration>Debug</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+        <ProjectConfiguration Include="Release|x64">
+            <Configuration>Release</Configuration>
+            <Platform>x64</Platform>
+        </ProjectConfiguration>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <PlatformToolset>v143</PlatformToolset><!-- VS2022 -->
+        <IntDir>obj/$(Platform)/$(Configuration)/</IntDir>
+        <OutDir>bin/$(Platform)/$(Configuration)/</OutDir>
+        <CharacterSet>Unicode</CharacterSet>
+    </PropertyGroup>
+
+</Project>

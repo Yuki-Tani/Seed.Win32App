@@ -1,0 +1,63 @@
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+    <Import Project=".\BuildProps\PlatformConfig.props" />
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.default.props" />
+
+    <ImportGroup Label="Flavor Config Props">
+        <Import Project=".\BuildProps\Flavor.Debug.props" Condition="'$(Configuration)'=='Debug'" />
+        <Import Project=".\BuildProps\Flavor.Release.props" Condition="'$(Configuration)'=='Release'" />
+    </ImportGroup>
+
+    <PropertyGroup Label="Project Props">
+        <ConfigurationType>Application</ConfigurationType>
+        <!-- <ConfigurationType>StaticLibrary</ConfigurationType> -->
+    </PropertyGroup>
+
+    <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+
+    <PropertyGroup Label="Nuget Config Props">
+        <RestorePackagesConfig>true</RestorePackagesConfig><!-- use packages.config -->
+        <RestoreRepositoryPath>.\packages</RestoreRepositoryPath>
+    </PropertyGroup>
+
+    <ImportGroup Label="Nuget Package Props">
+        <Import Project=".\packages\Microsoft.Windows.CppWinRT.2.0.221121.5\build\native\Microsoft.Windows.CppWinRT.props" />
+    </ImportGroup>
+
+    <ItemGroup>
+        <!-- <ProjectReference Include=".\xxx\xxx.vcxproj" /> -->
+    </ItemGroup>
+
+    <ItemDefinitionGroup Label="Compile Options">
+        <ClCompile>
+            <LanguageStandard>stdcpp20</LanguageStandard>
+            <PrecompiledHeader>Use</PrecompiledHeader>
+            <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+        </ClCompile>
+    </ItemDefinitionGroup>
+
+    <!-- <ItemDefinitionGroup Label="Include Directory">
+        <ClCompile>
+            <AdditionalIncludeDirectories>
+                ..\xxx;
+                %(AdditionalIncludeDirectories)
+            </AdditionalIncludeDirectories>
+        </ClCompile>
+    </ItemDefinitionGroup> -->
+
+    <ItemGroup Label="Headers">
+        <ClInclude Include="pch.h" />
+        <ClInclude Include="main.h" />
+    </ItemGroup>
+    <ItemGroup Label="Sources">
+        <ClCompile Include="pch.cpp">
+            <PrecompiledHeader>Create</PrecompiledHeader>
+        </ClCompile>
+        <ClCompile Include="main.cpp" />
+    </ItemGroup>
+
+    <ImportGroup Label="Targets">
+        <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Targets" />
+        <Import Project=".\packages\Microsoft.Windows.CppWinRT.2.0.221121.5\build\native\Microsoft.Windows.CppWinRT.targets" />
+    </ImportGroup>
+</Project>
